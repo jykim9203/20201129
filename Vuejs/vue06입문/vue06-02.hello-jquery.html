@@ -15,9 +15,15 @@
 
     <div id="app">
         <p></p>
-        <button>click me</button>
+        <button >click me</button>
     </div>
     
 </body>
-
 </html>
+<script src="../jquery-3.4.1.js"></script>
+<script>
+    $("button").on("click", function(){
+        var Text = "Hello, jQery!!!!"
+        $(this).prev().text(Text)
+    })
+</script>

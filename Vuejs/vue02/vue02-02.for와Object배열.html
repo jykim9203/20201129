@@ -43,3 +43,53 @@
 </body>
 
 </html>
+<script>
+    var objarray = [
+        { text: 'One', value: 'A' },
+        { text: 'Two', value: 'B' },
+        { text: 'Three', value: 'C' }
+    ];
+    // 1 . objarray 에 { text : 'Four', value : 'D'} 를 추가하세요
+    objarray[objarray.length] = {
+        text : 'Four',
+        value : 'D'
+    };
+    // objarray.push({
+    //     text : 'Four',
+    //     value : 'D'
+    // });
+    // 2. objarray 에  { text: 'Two', value : 'B'} 를 2 , 2 로 변경
+    // 기존것을 삭제하고 새로 추가
+    objarray[1] =  { text: '2', value: '2' },
+    // 기존것을 변경
+    // objarray[1].text = '2' 
+    // objarray[1].value = '2'
+
+    // 3. { text: 'Three', value: 'C' } 삭제
+    objarray.splice(2, 1)
+
+    
+    // 4. text 가 'One' 객체를 찾으세요.
+    var arrOne = [];
+    for ( var i=0; i < objarray.length; i ++){
+        var obj = objarray[i];
+        if ( obj.text ==='One'){
+            // true
+            arrOne[arrOne.length] = obj;
+        } else{
+            // false
+        }
+         
+    }
+    console.log(arrOne)
+
+    debugger;
+    var arrOne2 = objarray.filter(function(item, index){
+        if  ( item.text ==='One' ){
+            return true
+        } else{
+            return false
+        }
+    })
+    console.log(arrOne2)
+</script>
