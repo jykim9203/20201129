@@ -22,14 +22,13 @@
     <hr>
 
     <div id="app" class="col-md-10 offset-md-1">
-        <button v-on:click="listBtn">추가</button>
         <br/><br/>
         <span>내정보입력하기</span>
         <div class="box">
-            <input type="text" placeholder="이름" v-model:value="name">
-            <input type="text" placeholder="전화번호" v-model:value="tel">
-            <input type="text" placeholder="주소" v-model:value="address">
-            <button>추가</button>
+            <input type="text" placeholder="이름" id="name" v-model:value="name">
+            <input type="text" placeholder="전화번호" id="tel" v-model:value="tel">
+            <input type="text" placeholder="주소" id="address" v-model:value="address">
+            <button v-on:click="myValueAddBtn">추가</button>
         </div>
         <table id="list" class="table-bordered">
             <thead>
@@ -70,10 +69,9 @@
         /* edtmc^2w */
         el: "#app",
         data: {
-            name : 0,
-            tel : 0,
-            address : 0,
-            
+            name : "",
+            tel : "",
+            address : "",
             contacts : [
                     {name : "설현" , tel : "010-1234-5678" , address : "인천"},
                     {name : "혜리" , tel : "010-3456-7890" , address : "서울"},
@@ -82,19 +80,29 @@
         },
         //template: ``,
         methods: {
-            listBtn : function(){
-                // this.$data.contacts.push({
-                //     name: "김준영",
-                //     tel: "010-7896-54321",
-                //     address: "인천",
-
-                // })
+            myValueAddBtn : function(){
                 var obj = {
-                    name :"김준영",
-                    tel: "010-7896-54321",
-                    address: "인천",
+                    name : this.$data.name,
+                    tel : this.$data.tel,
+                    address : this.$data.address
                 }
-                this.$set( this.$data.contacts, this.$data.contacts.length, obj);
+                if ( obj.name === "" ){
+                    alert('이름을 입력해주세요');
+                    $("#name").focus();
+                    return
+                } else if ( obj.tel === "" ){
+                    alert('전화번호을 입력해주세요');
+                    $("#tel").focus();
+                    return
+                } else if ( obj.address === ""){
+                    alert('주소를 입력해주세요');
+                    $("#address").focus();
+                    return
+                }
+                this.$data.contacts.push(obj)
+                this.$data.name = "";
+                this.$data.tel = "";
+                this.$data.address = "";
             }
         },
         components: {

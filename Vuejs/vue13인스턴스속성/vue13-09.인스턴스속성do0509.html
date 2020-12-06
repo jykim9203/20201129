@@ -46,12 +46,22 @@
             }
         }
       문제 2. 같이
-        watch 속성을 이용하여 data 속성의 변화를 감지하여 console.log로 출력하시오.
+        data 속성을 이용하여 입력된 값을 화면에 출력되게 하시오
+
+      문제 3. 같이
+        computed 속성을 이용하여 입력된 값을 화면에 출력되게 하시오
+
+      문제 4. 같이
+        watch 속성을 이용하여 입력된 값을 화면에 출력되게 하시오
 
     </xmp>
     <hr>
     <div id="app">
         <input type="text" name="message" id="message" v-on:keyup="msgKey">
+        <br><br>
+        <p>data 속성을 이용해서 화면 표시 : {{mesg1}}</p>
+        <p>computed 속성을 이용해서 화면 표시 : {{mesg2}}</p>
+        <p>watch 속성을 이용해서 화면 표시 : {{mesg3}}</p>
     </div>
 
 </body>
@@ -59,3 +69,47 @@
 </html>
 
 <!-- vue 플러그인 임포트   -->
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js">/* vue 플러그인 임포트 */</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"> /* JSX를 자바스크립트로 변환 */</script>
+<script src="https://unpkg.com/vuex@3.3.0/dist/vuex.js"> /* vuex 플러그인 임포트 */</script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"> /* axios 플러그인 임포트 */</script>
+<script src="https://unpkg.com/vue-router@3.1.6/dist/vue-router.js"> /* vue 라우터 플러그인 임포트 */</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> /* jQuery library */</script>
+<script>
+    new Vue({
+        /* edtmc^2w */
+        el: "#app",
+        data: {
+            mesg1 : "",
+            mesg3 : "",
+        },
+        //template: ``,
+        methods: {
+            msgKey : function(event){
+                console.log(event.target.value)
+                // this.$data.mesg1 = event.target.value
+                this.$set( this.$data , "mesg1" , event.target.value)
+            }
+        },
+        components: {
+    
+        }, 
+        computed: {
+            mesg2 : function(){
+              return this.$data.mesg1
+            }
+        },
+        watch: {
+            mesg1 : function(value){
+              this.$data.mesg3 = value
+            }
+        },
+        mounted: function() {
+            console.log("mounted");
+        },
+        updated: function() {
+            console.log("updated");
+        },
+    });
+    
+</script>

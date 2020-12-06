@@ -52,3 +52,51 @@
 </html>
 
 <!-- vue 플러그인 임포트   -->
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js">/* vue 플러그인 임포트 */</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"> /* JSX를 자바스크립트로 변환 */</script>
+<script src="https://unpkg.com/vuex@3.3.0/dist/vuex.js"> /* vuex 플러그인 임포트 */</script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"> /* axios 플러그인 임포트 */</script>
+<script src="https://unpkg.com/vue-router@3.1.6/dist/vue-router.js"> /* vue 라우터 플러그인 임포트 */</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> /* jQuery library */</script>
+<script>
+    new Vue({
+        /* edtmc^2w */
+        el: "#app",
+        data: {
+            sum1 : 0,
+            numInput : 0,
+            sumInput : 0,
+            sum10 : 0,
+        },
+        //template: ``,
+        methods: {
+            clickBtn1 : function(){
+                this.$set(this.$data , "sum1" , this.$data.sum1 +1)
+            },
+            clickBtn10 : function(event){
+                var num = Number(event.target.dataset.num);
+                this.$set(this.$data , "sum10", this.$data.sum10 + num)
+            },
+            clickBtnInput : function(){
+                var num = Number(this.$data.numInput)
+                this.$set(this.$data , "sumInput" , this.$data.sumInput+num)
+            }
+        },
+        components: {
+    
+        }, 
+        computed: {
+    
+        },
+        watch: {
+    
+        },
+        mounted: function() {
+            console.log("mounted");
+        },
+        updated: function() {
+            console.log("updated");
+        },
+    });
+    
+</script>

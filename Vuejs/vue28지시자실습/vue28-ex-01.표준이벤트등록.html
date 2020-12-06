@@ -67,12 +67,12 @@
         </xmp>
         <ul>
             <li>
-                <a class="image3" href="../images/image3.jpg">
+                <a class="image3" href="../images/image3.jpg" v-on:click="aniClick">
                     강아지 사진
                 </a>
             </li>
             <li>
-                <a class="image3" href="../images/image4.jpg">
+                <a class="image3" href="../images/image4.jpg" v-on:click="aniClick">
                     고양이 사진
                 </a>
             </li>
@@ -139,4 +139,45 @@
 </html>
 
 <!-- vue 플러그인 임포트   -->
-
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js">/* vue 플러그인 임포트 */</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"> /* JSX를 자바스크립트로 변환 */</script>
+<script src="https://unpkg.com/vuex@3.3.0/dist/vuex.js"> /* vuex 플러그인 임포트 */</script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"> /* axios 플러그인 임포트 */</script>
+<script src="https://unpkg.com/vue-router@3.1.6/dist/vue-router.js"> /* vue 라우터 플러그인 임포트 */</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> /* jQuery library */</script>
+<script>
+    new Vue({
+        /* edtmc^2w */
+        el: "#app",
+        data: {
+            img_image3 : "",
+        },
+        //template: ``,
+        methods: {
+            aniClick : function(event){
+                event.stopPropagation();
+                event.preventDefault();
+                
+                var aniImg = event.target.href;
+                this.$set(this.$data , "img_image3" , aniImg)
+            },
+        },
+        components: {
+    
+        }, 
+        computed: {
+    
+        },
+        watch: {
+    
+        },
+        mounted: function() {
+            console.log("mounted");
+        },
+        updated: function() {
+            console.log("updated");
+        },
+    });
+    
+</script>
+
