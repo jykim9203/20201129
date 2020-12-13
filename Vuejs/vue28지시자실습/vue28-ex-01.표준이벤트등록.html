@@ -115,7 +115,7 @@
             select 에 change 이벤트 핸들러를 작성하시오.
             change 이벤트 핸들러: selectchange
         </xmp>
-        <select id="sel">
+        <select id="sel" v-on:change="selectchange">
             <option value="../images/strawberry.gif">딸기</option>
             <option value="../images/banana.gif">바나나</option>
             <option value="../images/apple.gif" selected>사과</option>
@@ -155,7 +155,8 @@
         data: {
             img_image3: "",
             img_but1: "../images/but1.gif",
-            img_swap: "../images/img_swap_off.png"
+            img_swap: "../images/img_swap_off.png",
+            img_select: "",
         },
         //template: ``,
         methods: {
@@ -199,6 +200,13 @@
                 console.log(event.target)
                 event.target.style.backgroundColor = "red";
             },
+            selectchange: function (event) {
+                console.log(event.target.value)
+                var valueE = event.target.value;
+
+                this.$set(this.$data, "img_select", valueE)
+
+            }
         },
         components: {
 
