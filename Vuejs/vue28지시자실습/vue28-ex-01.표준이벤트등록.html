@@ -67,12 +67,12 @@
         </xmp>
         <ul>
             <li>
-                <a class="image3" href="../images/image3.jpg" v-on:click="aniClick">
+                <a class="image3" href="../images/image3.jpg" v-on:click="imageclick">
                     강아지 사진
                 </a>
             </li>
             <li>
-                <a class="image3" href="../images/image4.jpg" v-on:click="aniClick">
+                <a class="image3" href="../images/image4.jpg" v-on:click="imageclick">
                     고양이 사진
                 </a>
             </li>
@@ -86,12 +86,12 @@
             이미지에 mouseover 와 mouseout 이벤트를 핸들러를 작성하시오.
             mouseover 이벤트를 핸들러 ==> imageover
             mouseout 이벤트를 핸들러 ==> imageout
-            
+
             이미지 위에 마우스를 내리면(mouseout ) ==> ../images/but1.gif , ../images/img_swap_off.png
             이미지 위에 마우스를 올리면(mouseover) ==> ../images/but2.gif , ../images/img_swap_on.png
         </xmp>
-        <img v-bind:src="img_but1" id="but1" />
-        <img v-bind:src="img_swap" id="img-swap" />
+        <img v-bind:src="img_but1" id="but1" v-on:mouseover="imageover" v-on:mouseout="imageout" />
+        <img v-bind:src="img_swap" id="img-swap" v-on:mouseover="imageover" v-on:mouseout="imageout" />
         <hr />
 
         <xmp>
@@ -100,11 +100,14 @@
             span에 mouseup 이벤트 핸들러를 작성하시오. ==> spanmouseup. background-color를 pink로 설정
             span에 mouseout 이벤트 핸들러를 작성하시오. ==> spanmouseout. background-color를 red로 설정
         </xmp>
-        <span>
+        <span v-on:mouseover="spanmouseover" v-on:mousedown="spanmousedown" v-on:mouseup="spanmouseup"
+            v-on:mouseout="spanmouseout">
         </span>
-        <span>
+        <span v-on:mouseover="spanmouseover" v-on:mousedown="spanmousedown" v-on:mouseup="spanmouseup"
+            v-on:mouseout="spanmouseout">
         </span>
-        <span>
+        <span v-on:mouseover="spanmouseover" v-on:mousedown="spanmousedown" v-on:mouseup="spanmouseup"
+            v-on:mouseout="spanmouseout">
         </span>
         <hr />
 
@@ -117,7 +120,7 @@
             <option value="../images/banana.gif">바나나</option>
             <option value="../images/apple.gif" selected>사과</option>
         </select>
-        
+
         <img id="img" v-bind:src="img_select" />
         <hr />
 
@@ -131,9 +134,9 @@
         <hr />
 
     </div>
-    
 
-    
+
+
 </body>
 
 </html>
@@ -150,34 +153,70 @@
         /* edtmc^2w */
         el: "#app",
         data: {
-            img_image3 : "",
+            img_image3: "",
+            img_but1: "../images/but1.gif",
+            img_swap: "../images/img_swap_off.png"
         },
         //template: ``,
         methods: {
-            aniClick : function(event){
+            imageclick: function (event) {
                 event.stopPropagation();
                 event.preventDefault();
-                
+
+
                 var aniImg = event.target.href;
-                this.$set(this.$data , "img_image3" , aniImg)
+                this.$set(this.$data, "img_image3", aniImg)
+            },
+            imageover: function (event) {
+                console.log(event.target)
+                var id = event.target.id;
+                if (id === "but1") {
+                    this.$set(this.$data, "img_but1", "../images/but2.gif")
+                } else {
+                    this.$set(this.$data, "img_swap", "../images/img_swap_on.png")
+                }
+            },
+            imageout: function (event) {
+                console.log(event.target)
+                var id = event.target.id;
+                if (id === "but1") {
+                    this.$set(this.$data, "img_but1", "../images/but1.gif")
+                } else {
+                    this.$set(this.$data, "img_swap", "../images/img_swap_off.png")
+                }
+            },
+            spanmouseover: function (event) {
+                console.log(event.target)
+                event.target.style.backgroundColor = "yellow";
+            },
+            spanmousedown: function (event) {
+                console.log(event.target)
+                event.target.style.backgroundColor = "blue";
+            },
+            spanmouseup: function (event) {
+                console.log(event.target)
+                event.target.style.backgroundColor = "pink";
+            },
+            spanmouseout: function (event) {
+                console.log(event.target)
+                event.target.style.backgroundColor = "red";
             },
         },
         components: {
-    
-        }, 
+
+        },
         computed: {
-    
+
         },
         watch: {
-    
+
         },
-        mounted: function() {
+        mounted: function () {
             console.log("mounted");
         },
-        updated: function() {
+        updated: function () {
             console.log("updated");
         },
     });
-    
-</script>
 
+</script>
