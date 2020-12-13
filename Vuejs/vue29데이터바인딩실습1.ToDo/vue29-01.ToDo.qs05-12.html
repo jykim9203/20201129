@@ -192,7 +192,7 @@
 
 <body>
     <pre style="text-align:left;">
-    
+
     선 학습 필요 사항:
         array.reduce() 사용법 
         array.map() 사용법 
@@ -230,9 +230,7 @@
 
         <!-- TodoInput -->
         <div class="inputBox shadow">
-            <input type="text"
-                placeholder="Type what you have to do"
-                v-model.trim:value="newTodoItem"
+            <input type="text" placeholder="Type what you have to do" v-model.trim:value="newTodoItem"
                 v-on:keyup.enter="addTodo" />
             <span class="addContainer" v-on:click="addTodo">
                 <i class="addBtn fas fa-plus" aria-hidden="true"></i>
@@ -259,15 +257,11 @@
         <!-- TodoList -->
         <section>
             <transition-group name="list" tag="ul">
-                <li v-for="(todoItem, index) in todoItems"
-                    v-bind:key="todoItem.id"
-                    v-bind:class="checked(todoItem.done)"
-                    v-on:click="doneToggle(todoItem.id, index)">
+                <li v-for="(todoItem, index) in todoItems" v-bind:key="todoItem.id"
+                    v-bind:class="checked(todoItem.done)" v-on:click="doneToggle(todoItem.id, index)">
                     <i class="checkBtn fas fa-check" aria-hidden="true"></i>
                     {{ todoItem.todo }}
-                    <span class="removeBtn"
-                          type="button"
-                          v-on:click="removeTodo(todoItem.id, index)">
+                    <span class="removeBtn" type="button" v-on:click="removeTodo(todoItem.id, index)">
                         <i class="far fa-trash-alt" aria-hidden="true"></i>
                     </span>
                 </li>
@@ -281,8 +275,87 @@
 
     </div>
 
+
 </body>
 
 </html>
 
 <!-- vue 플러그인 임포트   -->
+
+<!-- vue 플러그인 임포트   -->
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js">/* vue 플러그인 임포트 */</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"> /* JSX를 자바스크립트로 변환 */</script>
+<script src="https://unpkg.com/vuex@3.3.0/dist/vuex.js"> /* vuex 플러그인 임포트 */</script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"> /* axios 플러그인 임포트 */</script>
+<script src="https://unpkg.com/vue-router@3.1.6/dist/vue-router.js"> /* vue 라우터 플러그인 임포트 */</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> /* jQuery library */</script>
+<script>
+    new Vue({
+        /* edtmc^2w */
+        el: "#app",
+        data: {
+            newTodoItem: null,
+            showModal: null,
+            todoItems: [
+                { id: 1, todo: "영화보기", done: false },
+                { id: 2, todo: "주말 산책", done: true },
+                { id: 3, todo: "ES6 학습", done: false },
+                { id: 4, todo: "잠실 야구장", done: false }
+            ]
+        },
+        //template: ``,
+        methods: {
+            checked: function (done) {
+                if (done) {
+                    return 'checked';
+                }
+                else {
+                    return null;
+                }
+            },
+            doneToggle: function (id, index) {
+                // this.$data.todoItems[index].done = !this.$data.todoItems[index].done
+                this.$set(this.$data.todoItems[index], "done", !this.$data.todoItems[index].done)
+            },
+            removeTodo: function (id, index) {
+                this.$data.todoItems.splice(index, 1)
+            },
+            clearAll: function (event) {
+                this.$set(this.$data, "todoItems", [])
+            },
+            addTodo: function (event) {
+                var text = this.$data.newTodoItem;
+                var maxObj = null;
+                if (this.$data.newTodoItem.length > 0) {
+                    maxObj = this.$data.todoItems.reduce(function (previtem, nextitem) {
+                        return previtem.id > nextitem.id ? previtem : nextitem;
+                    });
+                }
+                else {
+                    maxObj === { id: 0, todo: "", done: false }
+                }
+                var obj = { id: maxObj.id + 1, todo: text, done: false }
+                this.$set(this.$data.todoItems, this.$data.todoItems.length, obj)
+                this.$set(this.$data, "newTodoItem", "")
+
+            },
+
+        },
+        components: {
+
+        },
+        computed: {
+
+        },
+        watch: {
+
+        },
+        mounted: function () {
+            console.log("mounted");
+        },
+        updated: function () {
+            console.log("updated");
+        },
+    });
+
+</script>

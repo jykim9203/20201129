@@ -22,12 +22,12 @@
         single style binding:
         ------------------
         new Vue({
-            data : {
-                baseStyles: {
-                    fontWeight:'800',
-                    color: 'red'
-                },
-            },
+        data : {
+        baseStyles: {
+        fontWeight:'800',
+        color: 'red'
+        },
+        },
         });
         <p v-bind:style="baseStyles">
             baseStyles and overrideStyles
@@ -36,15 +36,15 @@
         multi style binding:
         ------------------
         new Vue({
-            data : {
-                baseStyles: {
-                    fontWeight:'800',
-                    color: 'red'
-                },
-                overrideStyles: {
-                    color:'blue'
-                },
-            },
+        data : {
+        baseStyles: {
+        fontWeight:'800',
+        color: 'red'
+        },
+        overrideStyles: {
+        color:'blue'
+        },
+        },
         });
         <p v-bind:style="[baseStyles, overrideStyles]">
             baseStyles and overrideStyles
@@ -112,7 +112,7 @@
         </P>
     </div>
     <hr />
-    
+
     <div id="example4">
         <h2> v-bind:style 를 사용한 예제 </h2>
         <button id="btn1" v-bind:style="[mystyle.set1,mystyle.set2,mystyle.set3]">버튼1</button>
@@ -127,3 +127,79 @@
 </html>
 
 <!-- vue 플러그인 임포트   -->
+
+<!-- vue 플러그인 임포트   -->
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js">/* vue 플러그인 임포트 */</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"> /* JSX를 자바스크립트로 변환 */</script>
+<script src="https://unpkg.com/vuex@3.3.0/dist/vuex.js"> /* vuex 플러그인 임포트 */</script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"> /* axios 플러그인 임포트 */</script>
+<script src="https://unpkg.com/vue-router@3.1.6/dist/vue-router.js"> /* vue 라우터 플러그인 임포트 */</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> /* jQuery library */</script>
+<script>
+    new Vue({
+        /* edtmc^2w */
+        el: "#example1",
+        data: {
+            myColor: {
+                backgroundColor: "aqua",
+                color: "purple",
+            }
+        },
+    });
+    new Vue({
+        /* edtmc^2w */
+        el: "#example2",
+        data: {
+            myColor: {
+                backgroundColor: "aqua",
+                color: "purple",
+            },
+            myLayout: {
+                width: "150px",
+                height: "80px",
+                textAlign: "center",
+            }
+        },
+    });
+    new Vue({
+        /* edtmc^2w */
+        el: "#example3",
+        data: {
+            mystyle: {
+                set1: {
+                    backgroundColor: "aqua",
+                    color: "purple",
+                },
+                set2: {
+                    textAlign: "center",
+                    width: "120px",
+
+                },
+                set3: {
+                    border: "sandybrown dashed 5px",
+                },
+            }
+        },
+    });
+    var vm4 = new Vue({
+        /* edtmc^2w */
+        el: "#example4",
+        data: {
+            mystyle: {
+                set1: {
+                    backgroundColor: "aqua",
+                    color: "purple",
+                },
+                set2: {
+                    textAlign: "center",
+                    width: "120px",
+
+                },
+                set3: {
+                    border: "sandybrown dashed 5px",
+                },
+            }
+        },
+    });
+
+</script>
