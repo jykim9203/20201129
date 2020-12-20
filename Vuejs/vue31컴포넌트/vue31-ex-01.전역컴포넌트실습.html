@@ -78,15 +78,7 @@
 
     <div id="app">
         <component-header></component-header>
-        <div id="content">
-            <p>Content</p>
-            <aside>
-                Aside
-            </aside>
-            <div id="content-list">
-                List
-            </div>
-        </div>
+        <component-content></component-content>
         <component-footer></component-footer>
     </div>
 
@@ -117,12 +109,38 @@
         </header>
         `,
     };
+    var componentAside = {
+        /* pdtmc^2w */
+        props: [],
+        template: `
+        <aside>
+            Aside
+        </aside>
+        `,
+    };
+    var componentContentList = {
+        /* pdtmc^2w */
+        props: [],
+        template: `
+        <div id="content-list">
+            List
+        </div>
+        `,
+    };
     var componentContent = {
         /* pdtmc^2w */
         props: [],
         template: `
-
+        <div id="content">
+            <p>Content</p>
+            <component-Aside></component-Aside>
+            <component-content-list></component-content-list>
+        </div>
         `,
+        components: {
+            "component-Aside": componentAside,
+            "component-content-list": componentContentList,
+        }
     };
     var componentFooter = {
         /* pdtmc^2w */
@@ -145,6 +163,7 @@
         },
         components: {
             "component-header": componentHeader,
+            "component-content": componentContent,
             "component-footer": componentFooter
         },
     });
