@@ -13,6 +13,7 @@
 
         Babel 이란 JS 컴파일러(=번역기)다.
             ES6 를 ES5 로 바꾸어 주는
+            JSX 를 ES로 바꾸어 주는 
                 
         온라인 babel 컴파일러 : https://babeljs.io/repl/
         
@@ -27,7 +28,7 @@
     </pre>
     <hr>
     <div id="output_es5">
-
+        <!-- Hello, ES5 -->
     </div>
     <hr>
     <div id="output_es6">
@@ -39,26 +40,35 @@
 </html>
 
 <!-- ES5 사용하기 -->
-<script>
-    // ES5
+<script type="text/javascript">
+    //ES5
     var name = "abc";
-    var age = "10";
-    var getMessage =  function(){
-        return "Hello, ES5"
-    }; 
+    var age = 10;
+
+    var getMessage = function(){
+        return "Hello, ES5";
+    }
+
+    // 태그 찾기
     var div = document.getElementById("output_es5");
     div.innerText = getMessage();
 </script>
 
+
 <!-- ES6 사용하기 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"> /* JSX를 자바스크립트로 변환 */</script>
 <script type="text/babel">
-    const name = 'abc'
-    let age = 10;
+    /* babel: es6 ==> es5 번역하는 자바스크립트 컴파일러 */
+    
+    // ES6
+    const name = "abc"; // 읽기전용
+    let   age  = 10;  // 읽기쓰기
 
     const getMessage = ()=>{
-        return "Hello ES6"
+        return "Hello, ES6";
     }
-    var div = document.getElementById("output_es6");
+    
+    // 태그찾기 
+    const div = document.getElementById("output_es6");
     div.innerText = getMessage();
 </script>

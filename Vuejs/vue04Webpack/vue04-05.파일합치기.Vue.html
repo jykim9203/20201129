@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +13,7 @@
     <!-- CSS import -->
     <link rel="stylesheet" href="../css/reset.css">
 </head>
+
 <body>
     <pre>
 
@@ -21,15 +23,32 @@
       # CLI 는 command line interface의 약자.
 
       step 1. mkdir webpack-test          # 폴더 만들기
-      step 2. cd webpack-test             # 폴더 이동
-      step 3. npm install vue-cli -g      # Vue-CLI version 2 다운로드
-      step 4. vue init webpack-simple     # Vue 프로젝트 생성
-      step 5. npm install                 # Vue package.json 의 라이브러리 다운로드
-      step 6. npm run dev                 # Vue 프로젝트 실행
+           $ ls 
 
+      step 2.              # 폴더 이동
+            $ cd webpack-test
+            $ ls 
+            $ pwd
+
+      step 3. Vue-CLI version 2 다운로드
+            $ npm install vue-cli -g
+            $ vue -V
+            vue/cli 2.9.6
+
+      step 4. Vue 프로젝트 생성
+            $ vue init webpack-simple  
+            $ ls 
+
+      step 5. Vue 라이브러리 다운로드
+            $ ls            # package.json 이 있는지 확인
+            $ npm install   # package.json 이 보이는 곳에서 실행
+
+      step 6. Vue 프로젝트 실행
+            $ npm run dev    
 
       step 7. 실습 파일 복사
         Header.vue, Footer.vue, App.vue 파일을 webpack-test/src/ 에 붙여넣기
+
       step 8. npm run build               # webpack-test/dist/ 에 합쳐진 파일 만들기
       step 9. npm run dev                 # Vue 프로젝트 실행
 
@@ -45,4 +64,5 @@
     </pre>
 
 </body>
-</html>
+
+</html>

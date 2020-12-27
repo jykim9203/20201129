@@ -9,21 +9,22 @@
 
 <body>
     <xmp>
-        jQueyry를 사용하여 "Hello, jQery!!!!" 를 출력한다.
+        jQueyry를 사용하여 "Hello, jQuery!!!!" 를 출력한다.
     </xmp>
     <hr />
 
     <div id="app">
         <p></p>
-        <button >click me</button>
+        <button>click me</button>
     </div>
     
 </body>
+
 </html>
 <script src="../jquery-3.4.1.js"></script>
 <script>
-    $("button").on("click", function(){
-        var Text = "Hello, jQery!!!!"
-        $(this).prev().text(Text)
-    })
+    $("#app>p").text("Hello, jQery");
+    $("#app>button").on("click", function(event){
+        alert("hi")
+    });
 </script>

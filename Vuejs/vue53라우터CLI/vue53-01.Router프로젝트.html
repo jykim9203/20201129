@@ -50,29 +50,38 @@
         Vue-CLI 버전 확인 :
             vue -V      <== global 설치인경우
             또는  
-            npx uve -V   <== local 로컬설치인경우
+            npx vue -V   <== local 로컬설치인경우
 
 
         ##################################
         # Vue-CLI 프로젝트 생성 및 설정 작업
         ##################################
-            step 01. npm install -g @vue/cli     # Vue-CLI 전역 설치
-            step 02. vue -V                      # Vue-CLI 버전 확인
-            step 03. vue create  routerprj01     # Vue 프로젝트 생성. package.json 생성. 라이브러리 다운로드
-                Vue CLI v4.4.1
-                ? Please pick a preset: Manually select features
-                ? Check the features needed for your project: Babel, Linter, Vuex, Linter
-                ? Use history mode for router? (Requires proper server setup for index fallback in production) Yes
-                ? Pick a linter / formatter config: Prettier
-                ? Pick additional lint features: Lint on save
-                ? Where do you prefer placing config for Babel, ESLint, etc.? In dedicated config files
-                ? Save this as a preset for future projects? No
+            step 01. npm install -g @vue/cli  --force     # Vue-CLI 전역 설치
+            
+            step 02. vue -V                               # Vue-CLI 버전 확인
+            @vue/cli 4.5.9
 
-            step 04. cd routerprj01              # 폴더 이동
-            step 07. npm run serve             # 프로젝트 실행
+            step 03. vue create  routerprj01              # Vue 프로젝트 생성. package.json 생성. 라이브러리 다운로드
+            Vue CLI v4.5.9
+            ? Please pick a preset: Manually select features
+            ? Check the features needed for your project: Choose Vue version, Babel, Router, Vuex, Linter
+            ? Choose a version of Vue.js that you want to start the project with 2.x
+            ? Use history mode for router? (Requires proper server setup for index fallback in production) Yes
+            ? Pick a linter / formatter config: Prettier
+            ? Pick additional lint features: Lint on save
+            ? Where do you prefer placing config for Babel, ESLint, etc.? In dedicated config files
+            ? Save this as a preset for future projects? No
+
+            step 04. cd routerprj01            # 폴더 이동
+
+            step 05. package.json 파일이 있는지 확인 
+            $ ls
+
+            step 06. package.json 파일이 보이면 프로젝트 실행
+            $ npm run serve             
         
-            step 05. vue add router              # Vue-Router 플러그인 추가
-            step 06. npm install vuex --save     # Veux 추가
+            step 07. vue add router              # Vue-Router 플러그인 추가
+            step 08. npm install vuex --save     # Veux 추가
 
             step 08. package.json 수정   # 프로젝트 실행시 브라우저 오픈 설정
                 "scripts": {

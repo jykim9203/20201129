@@ -20,7 +20,10 @@
         작업 순서
         . 스크립트 플러그인 임포트
         . Vue 인스턴스 생성
-        . el 과 data 프로퍼티 설정
+        . el , data, methods 에 프로퍼티 설정
+            el: 태그 찾기
+            data : 변수(상태) 설정
+            methods: 이벤트 핸들러 설정. 
         . HTML 파일에 DOM 컨테이너 설치
 
         [참조]page 34,37,38
@@ -44,15 +47,33 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> /* jQuery library */</script>
 <script>
     new Vue({
-        el : "#app",
-        data : {
-            message : "Hello, Vue",
-            name : "김준영"
+        /* edtmc^2w */
+        el: "#app",
+        data: {
+            message: "Hellow, Vue.js",
         },
+        //template: ``,
         methods: {
-            clickBtn : function(){
-                this.$data.message = this.$data.name
-            }
+            clickBtn: function(event){
+                this.$data.message = "Hello~~~~~~~"
+                alert("hi")
+            },
+        },
+        components: {
+    
+        }, 
+        computed: {
+    
+        },
+        watch: {
+    
+        },
+        mounted: function() {
+            console.log("mounted");
+        },
+        updated: function() {
+            console.log("updated");
         },
     });
+    
 </script>

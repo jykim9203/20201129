@@ -1,8 +1,8 @@
 {
   "name": "webpack-test",
-  "description": "test",
+  "description": "A Vue.js project",
   "version": "1.0.0",
-  "author": "jykim9203 <jykim9203@naver.com>",
+  "author": "etrytuyj <e5e6r87iuy@aca.co.kr>",
   "license": "MIT",
   "private": true,
   "scripts": {

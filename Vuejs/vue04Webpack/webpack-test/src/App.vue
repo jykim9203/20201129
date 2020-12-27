@@ -7,7 +7,9 @@ section {
   margin: 40px 0px;
 }
 
-div {margin: 40px 20px;}
+div {
+  margin: 40px 20px;
+}
 </style>
 
 <template>

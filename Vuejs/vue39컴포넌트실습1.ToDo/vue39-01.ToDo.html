@@ -227,39 +227,79 @@
     <div id="app">
 
         <!-- TodoHeader -->
+        <todo-header></todo-header>
+        
+        <!-- TodoInput -->
+        <todo-input v-on:add-todo="addTodo"></todo-input>
+
+        <!-- TodoList -->
+        <todo-list v-bind:todo-items="todoItems"
+                   v-on:done-toggle ="doneToggle"
+                   v-on:remove-todo ="removeTodo">
+        </todo-list>
+
+        <!-- TodoFooter -->
+        <todo-footer v-on:clear-all="clearAll"></todo-footer>
+
+    </div>
+</body>
+
+</html>
+
+<!-- vue 플러그인 임포트   -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"> /* JSX를 자바스크립트로 변환 */</script>
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js">/* vue 플러그인 임포트 */</script>
+<script src="https://unpkg.com/vuex@3.3.0/dist/vuex.js"> /* vuex 플러그인 임포트 */</script>
+<script src="https://unpkg.com/vue-router@3.1.6/dist/vue-router.js"> /* vue 라우터 플러그인 임포트 */</script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"> /* axios 플러그인 임포트 */</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> /* jQuery library */</script>
+<script>
+    // 지역컴포넌트 만들기
+    // TodoHeader
+    // TodoFooter 
+    // TodoInput
+    // TodoList
+    var TodoHeader = {
+        /* pdtmc^2w */
+        props: [] ,
+        data: function() {
+            return { }
+        },
+        template: `
         <header>
             <h1>TODO it!</h1>
         </header>
+        `,
+        methods: {
 
-        <!-- TodoInput -->
-        <div class="inputBox shadow">
-            <input type="text"
-                placeholder="Type what you have to do"
-                v-model.trim:value="newTodoItem"
-                v-on:keyup.enter="addTodo" />
-            <span class="addContainer" v-on:click="addTodo">
-                <i class="addBtn fas fa-plus" aria-hidden="true"></i>
-            </span>
+        },
+        components: { },
+        computed: {
 
-            <div class="modal-mask" v-on:keyup.esc="$emit('close')" v-if="showModal" v-on:close="showModal = false">
-                <div class="modal-wrapper">
-                    <div class="modal-container">
-                        <div class="modal-header">
-                            <h3 slot="header">경고</h3>
-                        </div>
+        },
+        watch: {
 
-                        <div class="modal-footer">
-                            <span slot="footer" v-on:click="showModal = false">
-                                할 일을 입력하세요.
-                                <i class="closeModalBtn fas fa-times" aria-hidden="true"></i>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        },
+    };
+    
+    var TodoFooter = {
+        /* pdtmc^2w */
+        template: `
+        <div class="clearAllContainer">
+            <span class="clearAllBtn" v-on:click="clearAll">Clear All</span>
         </div>
+        `,
+        methods: {
+            clearAll:function(event){
+                this.$emit("clear-all")
+            }
+        },
+    };
 
-        <!-- TodoList -->
+    var TodoList = { 
+        /* pdtmc^2w */
+        props: ["todoItems"] ,
+        template: `    
         <section>
             <transition-group name="list" tag="ul">
                 <li v-for="(todoItem, index) in todoItems"
@@ -270,27 +310,162 @@
                     {{ todoItem.todo }}
                     <span class="removeBtn"
                           type="button"
-                          v-on:click="removeTodo(todoItem.id, index)">
+                          v-on:click.stop="removeTodo(todoItem.id, index)">
                         <i class="far fa-trash-alt" aria-hidden="true"></i>
                     </span>
                 </li>
             </transition-group>
         </section>
+        `,
+        methods: {
+            checked: function (done) {
+                if (done) {
+                    return "checked";
+                }
+                else {
+                    return null;    
+                }
+            },
+            doneToggle: function(id, index){
+                this.$emit("done-toggle", id, index)
+            },
+            removeTodo: function(id, index){
+                this.$emit("remove-todo", id, index)
+            },
+        },
+    };
 
-        <!-- TodoFooter -->
-        <div class="clearAllContainer">
-            <span class="clearAllBtn" v-on:click="clearAll">Clear All</span>
+    var TodoInput = { 
+        /* pdtmc^2w */
+        props: [] ,
+        data: function() {
+            return { 
+                newTodoItem: null, 
+                showModal: false
+            }
+        },
+        template: `
+        <div class="inputBox shadow">
+            <input type="text" placeholder="Type what you have to do" v-model.trim:value="newTodoItem"
+                v-on:keyup.enter="addTodo"
+                ref="myfocus" />
+            <span class="addContainer" v-on:click="addTodo">
+                <i class="addBtn fas fa-plus" aria-hidden="true"></i>
+            </span>
+        
+            <div class="modal-mask" v-on:keyup.esc="$emit('close')" v-if="showModal" v-on:close="showModal = false">
+                <div class="modal-wrapper">
+                    <div class="modal-container">
+                        <div class="modal-header">
+                            <h3 slot="header">경고</h3>
+                        </div>
+        
+                        <div class="modal-footer">
+                            <span slot="footer" v-on:click="showModal = false">
+                                할 일을 입력하세요.
+                                <i class="closeModalBtn fas fa-times" aria-hidden="true"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+        `,
+        methods: {
+            addTodo: function(event){
+                this.$emit("add-todo", this.$data.newTodoItem )
 
-    </div>
-
+                // input 태그 입력값 지우기
+                //this.$data.newTodoItem = "";
+                this.$set(this.$data, "newTodoItem", "")
+            }
+        },
+        components: {
     
+        },
+        computed: {
+    
+        },
+        watch: {
+    
+        },
+        mounted: function () {
+            console.log("TodoInput >> mounted");
+            // 태그에 추가할 내용: ref="myfocus"
+            this.$refs.myfocus.focus();
+        },
+    };
 
-</body>
+    // 인스턴스 만들기 
+    new Vue({
+        /* edtmc^2w */
+        el: "#app",
+        data: {
+            todoItems: [
+                { id: 1, todo: "영화보기", done: false },
+                { id: 2, todo: "주말 산책", done: true },
+                { id: 3, todo: "ES6 학습", done: false },
+                { id: 4, todo: "잠실 야구장", done: false }
+            ],
+        },
+        //template: ``,
+        methods: {
+            doneToggle: function (id, index) {
+                this.$data.todoItems[index].done = !this.$data.todoItems[index].done;
+            },
+            removeTodo: function (id, index) {               
+                this.$data.todoItems.splice(index, 1)
+            },
+            clearAll: function () { 
+                this.$data.todoItems = []
+            },
+            addTodo: function(newTodoItem){
+                var text = newTodoItem;
 
-</html>
+                // this.$data.todoItems에서 최대 id 값  찾기
+                var maxObj = null;
+                if (this.$data.todoItems.length > 0) {
+                    maxObj = this.$data.todoItems.reduce(function (previtem, nextitem) {
+                        return previtem.id > nextitem.id ? previtem : nextitem;
+                    });
+                    // maxObj = { id: 4, todo: "잠실 야구장", done: false }
+                }
+                else {
+                    maxObj = { id: 0, todo: "", done: false }
+                }
 
-<!-- vue 플러그인 임포트   -->
+                var obj = {
+                    id: maxObj.id + 1,
+                    todo: newTodoItem,
+                    done: false
+                }
+
+                // this.$data.todoItems 에 obj를 추가하시오. 
+                //this.$data.todoItems[this.$data.todoItems.length] = obj;
+                this.$set(this.$data.todoItems, this.$data.todoItems.length, obj);
+            }
+        },
+        components: {
+            "todo-header": TodoHeader,
+            "todo-footer": TodoFooter,
+            "todo-list": TodoList,
+            "todo-input": TodoInput,
+        }, 
+        computed: {
+    
+        },
+        watch: {
+    
+        },
+        mounted: function() {
+            console.log("mounted");
+        },
+        updated: function() {
+            console.log("updated");
+        },
+    });
+    
+</script>
 
 
 
